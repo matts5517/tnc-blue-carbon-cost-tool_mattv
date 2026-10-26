@@ -89,9 +89,9 @@ const calculateBreakevenCostPerTon = (
   const isNPV = filters.costRangeSelector === COST_TYPE_SELECTOR.NPV;
   const costToUse = isNPV ? rowData.totalCostNPV : rowData.totalCost;
   const opexToUse = isNPV ? rowData.opexNPV : rowData.opex;
-  const creditsIssued = rowData.creditsIssued;
+  const creditsIssued = Number(rowData.creditsIssued);
 
-  if (!creditsIssued || creditsIssued === 0) {
+  if (!Number.isFinite(creditsIssued) || creditsIssued <= 0) {
     return null;
   }
 
